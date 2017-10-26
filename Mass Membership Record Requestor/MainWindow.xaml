@@ -5,8 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mass_Membership_Record_Requestor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="Membership Record Mass Requestor" Height="500" Width="800">
+    <Grid ShowGridLines="False">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*" />
+            <ColumnDefinition Width=".5*" />
+        </Grid.ColumnDefinitions>
+        <DockPanel Grid.Column="0">
+            <Label Content="Information of Member to Request" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+            <DockPanel DockPanel.Dock="Top" Height="25" Margin="0,5,0,5">
+                <Label Content="Name"  Margin="5,0,0,0"/>
+                <TextBox Name="NameTextBox"  Margin="5,0,5,0"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="25" Margin="0,5,0,5">
+                <Label Content="Birth Date"  Margin="5,0,0,0"/>
+                <DatePicker Name="BirthDateDatePicker" Margin="5,0,5,0"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="25" Margin="0,5,0,5">
+                <Label Content="Phone Number"  Margin="5,0,0,0"/>
+                <TextBox Name="PhoneNumberTextBox" Margin="5,0,5,0"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="25" Margin="0,5,0,5">
+                <Label Content="Email"  Margin="5,0,0,0"/>
+                <TextBox Name="EmailTextBox" Margin="5,0,5,0"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="25" Margin="0,5,0,5">
+                <Label Content="Service Address #1"  Margin="5,0,0,0"/>
+                <TextBox Name="ServiceAddress1TextBox" Margin="5,0,5,0" KeyDown="ServiceAddressTextBox_KeyDown"/>
+            </DockPanel>
+            <DockPanel DockPanel.Dock="Top" Height="25" Margin="0,5,0,5">
+                <Label Content="Service Address #2"  Margin="5,0,0,0" KeyDown="ServiceAddressTextBox_KeyDown"/>
+                <TextBox Name="ServiceAddress2TextBox" Margin="5,0,5,0" KeyDown="ServiceAddressTextBox_KeyDown"/>
+            </DockPanel>
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.33*" />
+                    <ColumnDefinition Width="0.33*" />
+                    <ColumnDefinition Width="0.33*" />
+                </Grid.ColumnDefinitions>
+                <Button Name="StartChromeButton" Grid.Column="0" Content="Start Chrome" Height="25" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,10,5,0" Click="StartChromeButton_Click"/>
+                <Button Name="AddToQueueButton" Grid.Column="1" Content="Add to queue" Height="25" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,10,5,0" Click="AddToQueueButton_Click"/>
+                <Button Name="CloseChromeButton" Grid.Column="2" Content="Close Chrome" Height="25" Width="85" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,10,5,0" Click="CloseChromeButton_Click"/>
+            </Grid>
+        </DockPanel>
+        <DockPanel Grid.Column="1" Margin="5,5,5,5">
+            <Label Content="Requests in Queue" VerticalAlignment="Top" DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+            <ListBox Name="RequestQueueListBox" DockPanel.Dock="Top" SelectionMode="Single" ItemsSource="{Binding Path=MembersToRequest, UpdateSourceTrigger=PropertyChanged}"/>
+        </DockPanel>
     </Grid>
 </Window>
